@@ -30,3 +30,11 @@ function generateScrapbook() {
 
 
 // Function to initialize Google Map API if not already done
+function initMap() {
+    // Your initialization code here
+}
+$('button').click(function () {
+    $('body').fadeOut(1000, function() {
+      window.location.href = 'http://github.com/child-hood/stories/resultspage';
+    });
+  });
