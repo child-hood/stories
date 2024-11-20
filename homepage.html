@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <!-- document basics -->
 	<meta charset="UTF-8" />
@@ -9,10 +9,35 @@
 	<link rel="stylesheet" type="text/css" href="css/homepage.css">
 	<!-- Link to javascript file - DEFER waits until all elements are rendered -->
 	<script src="https://kit.fontawesome.com/79a30abccf.js" crossorigin="anonymous"></script>
+
+    <title>Childhood Scrapbook Generator</title>
 </head>
-<h1>Childhood Stories</h1> 
-//Input name
-//Upload photo(s)
-//Input location (map)
-//Add a song (youtube)
-//Type a childhood story
+
+<body>
+<h1>Childhood Scrapbook Generator</h1>
+
+<!-- Name Input -->
+<label for="name">Enter your name:</label>
+<input type="text" id="name">
+
+<!-- Image Upload -->
+<label for="images">Upload images (Max 2):</label>
+<input type="file" id = "images", accept = "image/*", multiple>
+
+<!-- YouTube Link -->
+<label for = "youtubeLink">Paste YouTube link:</label>";
+<input type ="url", id= 'youtubeLink">;
+<button onclick='generateScrapbook()'>Generate Scrapbook Page</button>
+
+<!-- Type a childhood story -->
+ <p>Type one of your favorite childhood stories:</p>
+<textarea id="story"></textarea>
+
+<div><id='scrapbookPage'></div>"; 
+<script src='script.js'></script>;
+<script async src ='https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap'="$mapscript"></script>;
+<script async src ='https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap'="$mapscript"></script>;
+<script async src='"https://geoapi.contextualwebsearch.com/multi-query/'=$contextualApiKey"></script>;
+</head>
+</body>
+</html>
