@@ -22,8 +22,6 @@ function generateScrapbook() {
   
 // Create image elements for uploaded images
 
-    
-  
 }
 
 // Function to create an embedded YouTube player with autoplay enabled
