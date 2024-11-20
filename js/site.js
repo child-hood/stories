@@ -17,12 +17,18 @@ function generateScrapbook() {
 
 
  // Check if YouTube link is from YouTube and retrieve video ID or fail gracefully
-
-    
-  
+  if (youtubeLink.startsWith("https://www.youtube.com/watch?v=")) {
+    const videoId = youtubeLink.split("v=")[1];
+    // Use video ID to create embedded YouTube player
+  } else {
+    // Handle invalid YouTube link
+  }
 // Create image elements for uploaded images
-
-}
+const images = Array.from(imagesInput.files).map(file => {
+  const imageElement = document.createElement("img");
+  imageElement.src = URL.createObjectURL(file);
+  return imageElement;
+});
 
 // Function to create an embedded YouTube player with autoplay enabled
 
@@ -35,4 +41,5 @@ $('button').click(function () {
     $('body').fadeOut(1000, function() {
       window.location.href = 'http://github.com/child-hood/stories/resultspage';
     });
-  });
+  });   
+}
