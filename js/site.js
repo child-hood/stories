@@ -16,11 +16,11 @@ function generateScrapbook() {
 
 
 
-    // Check if YouTube link is from YouTube and retrieve video ID or fail gracefully
+ // Check if YouTube link is from YouTube and retrieve video ID or fail gracefully
 
     
   
-    // Create image elements for uploaded images
+// Create image elements for uploaded images
 
     
   
