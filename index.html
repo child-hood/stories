@@ -7,37 +7,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="css/site.css">
 	<link rel="stylesheet" type="text/css" href="css/homepage.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<!-- Link to javascript file - DEFER waits until all elements are rendered -->
 	<script src="https://kit.fontawesome.com/79a30abccf.js" crossorigin="anonymous"></script>
 
     <title>Childhood Scrapbook Generator</title>
 </head>
-
 <body>
-<h1>Childhood Scrapbook Generator</h1>
+<h1>Childhood Stories</h1> 
+	 <p> What's your name?</p>
+	 <input  type="text" id="name" placeholder="type your name">
 
-<!-- Name Input -->
-<label for="name">Enter your name:</label>
-<input type="text" id="name">
+<p>Upload a photo here!</p>
+<!--courtesy code of w3schools-->
+<form action="/action_page.php">
+  <input type="file" id="images" name="filename">
+  <input type="submit">
+</form>
 
-<!-- Image Upload -->
-<label for="images">Upload images (Max 2):</label>
-<input type="file" id = "images", accept = "image/*", multiple>
+	<p> Where are you from?</p>
+	<input  type="text" id="location" placeholder="type your hometown">
 
-<!-- YouTube Link -->
-<label for = "youtubeLink">Paste YouTube link:</label>";
-<input type ="url", id= 'youtubeLink">;
-<button onclick='generateScrapbook()'>Generate Scrapbook Page</button>
+	<p>Add a song (youtube) </p>
+	<input  type="text" id="song" placeholder="copy/paste link here">
 
-<!-- Type a childhood story -->
- <p>Type one of your favorite childhood stories:</p>
-<textarea id="story"></textarea>
+	<p>Type a short childhood story!<p>
+	 <input  type="text" id="story" placeholder="tell me your best childhood memory">
 
-<div><id='scrapbookPage'></div>"; 
-<script src='script.js'></script>;
-<script async src ='https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap'="$mapscript"></script>;
-<script async src ='https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap'="$mapscript"></script>;
-<script async src='"https://geoapi.contextualwebsearch.com/multi-query/'=$contextualApiKey"></script>;
-</head>
+	<div class="button">
+	 <button id="submit-button">Submit</button>
+</div>
 </body>
 </html>
