@@ -1,11 +1,12 @@
 
 body {
-    background-image: url('../img/paper.jpeg');
+    background-image: url("https://64.media.tumblr.com/9f8977d10774bd24cb6ec2a1d0fa4fdc/3841b5b32d46d942-67/s2048x3072/4dd90fca0c879cd5de3065b642f24ea20ff5d407.jpg");
     background-size: cover; /* Makes the image cover the entire area */
     background-repeat: no-repeat; /* Prevents tiling of the image */
     background-position: center; /* Centers the image */
     height: 100vh; 
     text-align: center; /* Center the text and elements globally */
+    opacity: 0.6;
 }
 
 h1 {
