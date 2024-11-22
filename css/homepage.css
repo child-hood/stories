@@ -1,6 +1,6 @@
 
 body {
-    background-image: url("https://64.media.tumblr.com/9f8977d10774bd24cb6ec2a1d0fa4fdc/3841b5b32d46d942-67/s2048x3072/4dd90fca0c879cd5de3065b642f24ea20ff5d407.jpg");
+    background-image: url("https://64.media.tumblr.com/54852d179939ac4dc887c99b47fa0945/1a71c0f063d48a55-e8/s2048x3072/09e417a7a9aa552abdee6d30e685ab38ca1cc939.jpg");
     background-size: cover; /* Makes the image cover the entire area */
     background-repeat: no-repeat; /* Prevents tiling of the image */
     background-position: center; /* Centers the image */
@@ -14,13 +14,11 @@ h1 {
     font-size: 55px; /* Font size */
     margin: 0 auto;
     text-align: center;
-    background-color: lightgray;
 }
 
 #story {
     width: 250px;
     margin: 0 auto; /* Center the input field */
-    background-color: lightgray;
 }
 
 p {
@@ -29,7 +27,6 @@ p {
     font-weight: bold;
     color: rgb(0, 0, 0);
     text-align: center;  
-    background-color: lightgray;
 }
 
 #submit-button {
