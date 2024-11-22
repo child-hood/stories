@@ -6,7 +6,6 @@ body {
     background-position: center; /* Centers the image */
     height: 100vh; 
     text-align: center; /* Center the text and elements globally */
-    opacity: 0.6;
 }
 
 h1 {
@@ -15,11 +14,13 @@ h1 {
     font-size: 55px; /* Font size */
     margin: 0 auto;
     text-align: center;
+    background-color: lightgray;
 }
 
 #story {
     width: 250px;
     margin: 0 auto; /* Center the input field */
+    background-color: lightgray;
 }
 
 p {
@@ -27,7 +28,8 @@ p {
     font-family: Courier;
     font-weight: bold;
     color: rgb(0, 0, 0);
-    text-align: center;   
+    text-align: center;  
+    background-color: lightgray;
 }
 
 #submit-button {
