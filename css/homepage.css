@@ -1,30 +1,47 @@
 
-
 body {
-    background-image: url("/Users/angelbingham/Documents/GitHub/stories/img/paper.jpeg");
-    width: 100%;
-    height: auto;
-    text-align: center;
+    background-image: url('../img/paper.jpg');
+    background-size: cover; /* Makes the image cover the entire area */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    background-position: center; /* Centers the image */
+    height: 100vh; 
+    text-align: center; /* Center the text and elements globally */
 }
 
 h1 {
+    font-family: Courier;
+    color: rgb(0, 0, 0); 
+    font-size: 55px; /* Font size */
+    margin: 0 auto;
     text-align: center;
-    font-size: 40px;
 }
-
 
 #story {
     width: 250px;
+    margin: 0 auto; /* Center the input field */
 }
 
 p {
     font-size: 20px;
+    font-family: Courier;
     font-weight: bold;
+    color: rgb(0, 0, 0);
+    text-align: center;   
 }
 
 #submit-button {
     font-size: 20px;
+    font-family: Courier;
+    color: rgb(0, 0, 0); 
     text-align: center;
     width: 150px;
     height: 38px;
+    background-color: transparent; /* Optional */
+    border: 1px solid rgb(0, 0, 0); /* Optional */
+    margin: 10px auto; /* Centers the button */ 
+}
+
+#submit-button:hover {
+    background-color: rgb(200, 200, 200); /* Optional hover effect */
+    cursor: pointer; 
 }
