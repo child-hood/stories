@@ -43,3 +43,22 @@ $('button').click(function () {
     });
   });   
 }
+
+//Results
+
+// Convert the resultHtml to a URI component
+var resultUri = encodeURIComponent(resultHtml);
+
+// Create a URL with the result as a query parameter
+var pageUrl = window.location.origin + window.location.pathname + '?result=' + resultUri;
+
+// Add the link to share results in the HTML
+resultHtml += '<p><a href="' + pageUrl + '">Share your scrapbook page</a></p>';
+var urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('result')) {
+    var sharedResultDecodedUri = urlParams.get('result');
+    var sharedDataString = decodeURIComponent(sharedResultDecodedUri);
+
+    document.body.innerHTML += "<h1>Shared Data:</h1>"+sharedDataString;
+
+}
