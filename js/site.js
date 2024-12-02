@@ -23,7 +23,8 @@ document.getElementById('submit-button').addEventListener('click', function() {
 '<p><strong>Name: </strong>' +name+ '</p>'+
 '<iframe width="560" height="315" src="'+youtubeEmbed+'" frameborder="0" allowfullscreen></iframe>';
 
-  document.body.innerHTML += resultHtml; // Append the results to the page
+  document.body.innerHTML += resultHtml;
+   // Append the results to the page
 
 });
 
