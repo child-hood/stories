@@ -41,5 +41,5 @@ document.getElementById('submit-button').addEventListener('click', function() {
     document.body.innerHTML += "<h1>Shared Data:</h1>"+sharedDataString;
   
   } 
-  window.location.href = 'your-next-page.html';
+  window.location.href = 'resultspage.html?result=' + encodeURIComponent(resultHtml);
 });
