@@ -1,5 +1,34 @@
-<h1>Title: ’s childhood</h1>
-<p></p>
-<img class=“” src=“”>
-//Include their picture, location on a map, song, paragraph
-//Create a link to share results as a “scrapbook” page
+<h1>Childhood Stories</h1>
+<p>What's your name?</p>
+<input type="text" id="name" placeholder="type your name">
+
+<p>Upload a photo here!</p>
+<form action="/action_page.php">
+  <input type="file" id="images" name="filename">
+  <input type="submit">
+</form>
+
+<p>Where are you from?</p>
+<input type = "text' id='location' placeholder='type your hometown">
+
+<p>Add a song (YouTube)</p>
+<input type = "text' id='song' placeholder='copy/paste link here">
+
+<script>
+// JavaScript to handle form submission and display results
+document.getElementById('submit-button').addEventListener('click', function() {
+    var name = document.getElementById('name').value;
+    var location = document.getElementById('location').value;
+    var song = document.getElementById('song').value;
+    var story = document.getElementById("story").value;
+
+    
+    resultHtml='<h2>Your Childhood Story</h2>'+
+   '<p><strong>Name: </strong>' +name+ "</p>"+
+  '<iframe width="560" height="315" src="'+song+'" frameborder="0" allowfullscreen></iframe>';
+
+document.body.innerHTML += resultHtml;
+      
+    // Append the results to the page
+
+});
