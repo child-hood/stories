@@ -1,36 +1,37 @@
-//all can be changed I was just testing
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Radio Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+    <audio id="player" controls style="width: 100%;"></audio>
 
-<script src="js/site.js.js"></script>
-<script>
-// JavaScript to handle form submission and display results
-document.getElementById('submit-button').addEventListener('click', function() {
-    var name = document.getElementById('name').value;
-    var location = document.getElementById('location').value;
-    var song = document.getElementById('song').value;
-    var story = document.getElementById("story").value;
+    <script>
+        // Initialize map
+        var map = L.map('map').setView([20, 0], 2); // Centered on the world
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    
-    resultHtml='<h2>Your Childhood Story</h2>'+
-   '<p><strong>Name: </strong>' +name+ "</p>"+
-  '<iframe width="560" height="315" src="'+song+'" frameborder="0" allowfullscreen></iframe>';
+        // Fetch radio station data
+        fetch('https://de1.api.radio-browser.info/json/stations/bycountry/United%20States')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(station => {
+                    if (station.geo_lat && station.geo_long) {
+                        L.marker([station.geo_lat, station.geo_long]).addTo(map)
+                            .bindPopup(`<b>${station.name}</b><br><button onclick="playRadio('${station.url_resolved}')">Play</button>`);
+                    }
+                });
+            });
 
-document.body.innerHTML += resultHtml;
-
-});
-
-// Convert the resultHtml to a URI component
-var resultUri = encodeURIComponent(resultHtml);
-
-// Create a URL with the result as a query parameter
-var pageUrl = window.location.origin + window.location.pathname + '?result=' + resultUri;
-
-// Add the link to share results in the HTML
-resultHtml += '<p><a href="' + pageUrl + '">Share your scrapbook page</a></p>';
-var urlParams = new URLSearchParams(window.location.search);
-if (urlParams.has('result')) {
-    var sharedResultDecodedUri = urlParams.get('result');
-    var sharedDataString = decodeURIComponent(sharedResultDecodedUri);
-
-    document.body.innerHTML += "<h1>Shared Data:</h1>"+sharedDataString;
-
-}
+        // Play radio stream
+        function playRadio(url) {
+            const player = document.getElementById('player');
+            player.src = url;
+            player.play();
+        }
+    </script>
+</body>
+</html>
