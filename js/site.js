@@ -1,9 +1,10 @@
 //Project prototpye
 //November 20
 
+
 document.getElementById('submit-button').addEventListener('click', function() {
   resultHtml += '<p><a href="' + pageUrl + '">Share your scrapbook page</a></p>';
-
+  
   var urlParams = new URLSearchParams(window.location.search);
   
   if (urlParams.has('result')) {
@@ -11,12 +12,26 @@ document.getElementById('submit-button').addEventListener('click', function() {
       var sharedDataString = decodeURIComponent(sharedResultDecodedUri);
       document.body.innerHTML += "<h1>Shared Data:</h1>" + sharedDataString;
   }
-  // JavaScript to handle form submission and display results
-  document.getElementById('submit-button').addEventListener('click', function() {
-    var name = document.getElementById('name').value;
-    var location = document.getElementById('location').value;
-    var song = document.getElementById('song').value;
-    var story = document.getElementById("story").value;
+    // Get the file input and image display element
+const fileInput = document.getElementById('imageInput');
+const imageDisplay = document.getElementById('imageDisplay');
+
+// When the file input changes (i.e., when a user selects a file)
+fileInput.addEventListener('change', function(event) {
+    const file = event.target.files[0]; // Get the selected file
+    if (file) {
+        const reader = new FileReader();
+        
+        // When the file is loaded, set it as the image source
+        reader.onload = function(e) {
+            imageDisplay.src = e.target.result; // Display the image
+        };
+        
+        // Read the file as a data URL (base64 encoded string)
+        reader.readAsDataURL(file);
+    }
+});
+
   
     
     var resultHtml='<h2>Your Childhood Story</h2>'+
@@ -26,7 +41,7 @@ document.getElementById('submit-button').addEventListener('click', function() {
     document.body.innerHTML += resultHtml;
      // Append the results to the page
   
-  });
+
   
   // Add the link to share results in the HTML
   resultHtml += '<p><a href="' + pageUrl + '">Share your scrapbook page</a></p>';
@@ -42,4 +57,5 @@ document.getElementById('submit-button').addEventListener('click', function() {
   
   } 
   window.location.href = 'resultspage.html?result=' + encodeURIComponent(resultHtml);
+
 });
