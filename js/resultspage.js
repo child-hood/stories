@@ -1,13 +1,13 @@
 document.getElementById('submit-button').addEventListener('click', function(event) {
-  event.preventDefault(); // Prevents default form submission
+  event.preventDefault(); // Prevent the form from submitting traditionally
 
   const userName = document.getElementById('name').value;
   const userStory = document.getElementById('story').value;
   const userPhoto = document.getElementById('images').files[0];
 
-  // Ensure a name, story, and photo are provided
+  // Ensure all fields are filled
   if (userName && userStory && userPhoto) {
-      // Validate image type (only allow certain formats)
+      // Validate image type
       const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
       if (!validImageTypes.includes(userPhoto.type)) {
           alert('Please upload a valid image file (JPEG, PNG, GIF).');
@@ -23,16 +23,16 @@ document.getElementById('submit-button').addEventListener('click', function(even
           const submission = {
               name: userName,
               story: userStory,
-              photo: photoData // Save the base64 image
+              photo: photoData // Store base64-encoded image
           };
 
-          // Retrieve existing submissions from localStorage or create a new array
-          const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+          // Retrieve existing submissions or create an empty array
+          let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
 
-          // Add the new submission to the submissions array
+          // Add the new submission to the array
           submissions.push(submission);
 
-          // Save the updated submissions array back to localStorage
+          // Save the updated submissions array to localStorage
           localStorage.setItem('submissions', JSON.stringify(submissions));
 
           // Clear the form fields after submission
@@ -40,20 +40,11 @@ document.getElementById('submit-button').addEventListener('click', function(even
           document.getElementById('story').value = '';
           document.getElementById('images').value = '';
 
-          // Redirect to the results page
-          const resultHtml = `
-              <h2>Your Childhood Story</h2>
-              <p><strong>Name: </strong>${userName}</p>
-              <p><strong>Story: </strong>${userStory}</p>
-              <img src="${photoData}" alt="Submitted Image" style="max-width: 80%;">
-              <p><a href="submissions.html">Share your scrapbook page</a></p>
-          `;
-
-          // Redirect with the results as a URL parameter
-          window.location.href = `resultspage.html?result=${encodeURIComponent(resultHtml)}`;
+          // Optionally, redirect the user to the submissions page
+          window.location.href = 'submissions.html'; // Redirect to display all submissions
       };
 
-      // Convert the photo to a data URL (base64 encoded)
+      // Read the uploaded photo as a data URL
       reader.readAsDataURL(userPhoto);
   } else {
       alert('Please fill in all fields and upload a photo!');
