@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Other Submissions</title>
     <link rel="stylesheet" href="../css/submission.css">
 </head>
 <body>
     <h1>What Others Have Submitted</h1>
-
+    
     <h2>Other Submitted Stories</h2>
-
     <div id="submissions-container">
         <!-- Submissions will be displayed here -->
     </div>
 
-    <script src="../js/submission.js"></script>
+    <script>
+        // Retrieve the submissions from localStorage
+        const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+
+        const submissionsContainer = document.getElementById('submissions-container');
+
+        if (submissions.length > 0) {
+            // Iterate over the submissions and display them
+            submissions.forEach(submission => {
+                const submissionDiv = document.createElement('div');
+                submissionDiv.classList.add('submission');
+                
+                const nameElement = document.createElement('h3');
+                nameElement.innerText = submission.name;
+                submissionDiv.appendChild(nameElement);
+
+                const storyElement = document.createElement('p');
+                storyElement.innerText = `Story: ${submission.story}`;
+                submissionDiv.appendChild(storyElement);
+
+                const photoElement = document.createElement('img');
+                photoElement.src = submission.photo;
+                photoElement.alt = `${submission.name}'s photo`;
+                photoElement.style.maxWidth = '100%';
+                photoElement.style.border = '5px solid #d7ccc8';
+                photoElement.style.borderRadius = '15px';
+                submissionDiv.appendChild(photoElement);
+
+                submissionsContainer.appendChild(submissionDiv);
+            });
+        } else {
+            submissionsContainer.innerHTML = '<p>No submissions yet.</p>';
+        }
+    </script>
 </body>
 </html>
