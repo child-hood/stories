@@ -42,23 +42,4 @@ document.addEventListener('DOMContentLoaded', function() {
   // Call the displayResults function to show the results when the page is loaded
   displayResults();
 });
-function downloadResults() {
-  // Get your results as a string or data you want to download
-  var results = "Your results here"; // Replace with actual results
-
-  // Create a Blob from the results string
-  var blob = new Blob([results], { type: 'text/plain' });
-
-  // Create a download link
-  var link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  
-      link.download = 'results.txt'; // Set the filename
-
-    // Simulate a click on the link to start the download
-    link.click();
-
-    // Clean up by revoking the object URL (optional)
-    URL.revokeObjectURL(link.href);
-}
 
