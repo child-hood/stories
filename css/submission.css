@@ -49,12 +49,15 @@ body {
 
 /* Style the photos */
 .submission img {
-    max-width: 100%;
-    height: auto;
+    max-width: 50%; /* Resize image to 50% of the container width */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 5px;
     border: 2px solid #e0d9d0; /* Vintage border around images */
     margin-top: 10px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Soft shadow to give depth */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    display: block; /* Ensure it behaves like a block-level element */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto;
 }
 
 /* Styling for headings */
@@ -121,5 +124,10 @@ a:hover {
     button {
         padding: 10px 15px;
         font-size: 0.9em;
+    }
+
+    /* Resize the image for smaller screens */
+    .submission img {
+        max-width: 90%; /* Resize image smaller on mobile devices */
     }
 }

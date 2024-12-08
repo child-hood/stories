@@ -41,22 +41,21 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-audio {
-    margin: 20px auto;
-    display: block;
-    background: #ffffff;
-    border: 2px solid #d7ccc8;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+#audio-player {
+    width: 40%; /* Adjust width */
+    height: 25px; /* Adjust height */
+    margin: 10px auto; /* Center the player */
 }
+
 
 /* Images */
 img {
     display: block;
     margin: 20px auto;
-    max-width: 80%;
-    border: 5px solid #d7ccc8;
-    border-radius: 15px;
+    width: 200px; /* Set the width to 200px */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 15px; /* Optional: Add rounded corners */
+    border: 2px solid #ccc; /* Optional: Add a border */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
