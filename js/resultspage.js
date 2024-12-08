@@ -1,61 +1,61 @@
-//Project prototpye
-//November 20
+document.getElementById('submit-button').addEventListener('click', function(event) {
+  event.preventDefault(); // Prevents default form submission
 
+  const userName = document.getElementById('name').value;
+  const userStory = document.getElementById('story').value;
+  const userPhoto = document.getElementById('images').files[0];
 
-document.getElementById('submit-button').addEventListener('click', function() {
-  resultHtml += '<p><a href="' + pageUrl + '">Share your scrapbook page</a></p>';
-  
-  var urlParams = new URLSearchParams(window.location.search);
-  
-  if (urlParams.has('result')) {
-      var sharedResultDecodedUri = urlParams.get('result');
-      var sharedDataString = decodeURIComponent(sharedResultDecodedUri);
-      document.body.innerHTML += "<h1>Shared Data:</h1>" + sharedDataString;
+  // Ensure a name, story, and photo are provided
+  if (userName && userStory && userPhoto) {
+      // Validate image type (only allow certain formats)
+      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!validImageTypes.includes(userPhoto.type)) {
+          alert('Please upload a valid image file (JPEG, PNG, GIF).');
+          return; // Stop execution if the file type is invalid
+      }
+
+      // Convert the image to base64 using FileReader
+      const reader = new FileReader();
+      reader.onloadend = function() {
+          const photoData = reader.result;
+
+          // Create a submission object
+          const submission = {
+              name: userName,
+              story: userStory,
+              photo: photoData // Save the base64 image
+          };
+
+          // Retrieve existing submissions from localStorage or create a new array
+          const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+
+          // Add the new submission to the submissions array
+          submissions.push(submission);
+
+          // Save the updated submissions array back to localStorage
+          localStorage.setItem('submissions', JSON.stringify(submissions));
+
+          // Clear the form fields after submission
+          document.getElementById('name').value = '';
+          document.getElementById('story').value = '';
+          document.getElementById('images').value = '';
+
+          // Redirect to the results page
+          const resultHtml = `
+              <h2>Your Childhood Story</h2>
+              <p><strong>Name: </strong>${userName}</p>
+              <p><strong>Story: </strong>${userStory}</p>
+              <img src="${photoData}" alt="Submitted Image" style="max-width: 80%;">
+              <p><a href="submissions.html">Share your scrapbook page</a></p>
+          `;
+
+          // Redirect with the results as a URL parameter
+          window.location.href = `resultspage.html?result=${encodeURIComponent(resultHtml)}`;
+      };
+
+      // Convert the photo to a data URL (base64 encoded)
+      reader.readAsDataURL(userPhoto);
+  } else {
+      alert('Please fill in all fields and upload a photo!');
   }
-    // Get the file input and image display element
-const fileInput = document.getElementById('imageInput');
-const imageDisplay = document.getElementById('imageDisplay');
-
-// When the file input changes (i.e., when a user selects a file)
-fileInput.addEventListener('change', function(event) {
-    const file = event.target.files[0]; // Get the selected file
-    if (file) {
-        const reader = new FileReader();
-        
-        // When the file is loaded, set it as the image source
-        reader.onload = function(e) {
-            imageDisplay.src = e.target.result; // Display the image
-        };
-        
-        // Read the file as a data URL (base64 encoded string)
-        reader.readAsDataURL(file);
-    }
-});
-
-  
-    
-    var resultHtml='<h2>Your Childhood Story</h2>'+
-  '<p><strong>Name: </strong>' +name+ '</p>'+
-  '<iframe width="560" height="315" src="'+youtubeEmbed+'" frameborder="0" allowfullscreen></iframe>';
-  
-    document.body.innerHTML += resultHtml;
-     // Append the results to the page
-  
-
-  
-  // Add the link to share results in the HTML
-  resultHtml += '<p><a href="' + pageUrl + '">Share your scrapbook page</a></p>';
-  
-  // Check if there's any shared data in the URL (query params)
-  var urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.has('result')) {
-    // Get and decode the shared data from query parameters
-    var sharedResultDecodedUri = urlParams.get('result');
-    var sharedDataString = decodeURIComponent(sharedResultDecodedUri);
-  
-    document.body.innerHTML += "<h1>Shared Data:</h1>"+sharedDataString;
-  
-  } 
-  window.location.href = 'resultspage.html?result=' + encodeURIComponent(resultHtml);
-
 });
