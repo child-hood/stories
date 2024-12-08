@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/site.css">
     <link rel="stylesheet" type="text/css" href="css/homepage.css">
-    <script src="js/site.js.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="js/site.js" DEFER></script>
+    <script src="js/site.js" defer></script>
     <script src="https://kit.fontawesome.com/79a30abccf.js" crossorigin="anonymous"></script>
     <title>Childhood Scrapbook Generator</title>
     <link rel="icon" href="https://64.media.tumblr.com/a3f905c49a6e498da15402995a0b384d/43ba46ccee95034a-5f/s1280x1920/b301dfcdfbfcf0d7b932c830c0d305ff4d6db2ed.pnj">
@@ -31,39 +30,40 @@
     </div>
 
     <script>
-        // When the submit button is clicked, save the photo and other details to localStorage
-        document.getElementById('submit-button').addEventListener('click', function() {
+        // When the submit button is clicked, save the data to localStorage
+        document.getElementById('submit-button').addEventListener('click', function () {
             const name = document.getElementById('name').value;
             const story = document.getElementById('story').value;
             const photoInput = document.getElementById('images');
             const file = photoInput.files[0];
 
-            // Check if a photo was selected
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // Create a new submission object
-                    const submission = {
-                        name: name,
-                        story: story,
-                        photo: e.target.result
-                    };
-
-                    // Get the existing submissions array from localStorage (if any)
-                    let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
-                    // Add the new submission to the array
-                    submissions.push(submission);
-                    // Save the updated submissions array to localStorage
-                    localStorage.setItem('submissions', JSON.stringify(submissions));
-
-                    alert('Your story has been submitted!');
-                    // Redirect to results page
-                    window.location.href = 'results/resultspage.html';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert('Please select a photo!');
+            if (!name || !story || !file) {
+                alert('Please fill out all fields and upload a photo!');
+                return;
             }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const photoData = e.target.result; // Base64 photo string
+                const submission = {
+                    name: name,
+                    story: story,
+                    photo: photoData,
+                };
+
+                // Get existing submissions or initialize an empty array
+                const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+                submissions.push(submission); // Add the new submission
+
+                // Save back to localStorage
+                localStorage.setItem('submissions', JSON.stringify(submissions));
+
+                // Alert the user and redirect to the results page
+                alert('Your story has been saved!');
+                window.location.href = 'results/resultspage.html';
+            };
+
+            reader.readAsDataURL(file);
         });
     </script>
 </body>
