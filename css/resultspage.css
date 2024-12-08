@@ -1,0 +1,100 @@
+/* General Styles */
+body {
+    font-family: 'Georgia', serif;
+    background: url('../img/paper.jpeg');
+   
+    background-size: cover;
+    color: #3e2723; /* Deep brown for contrast */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Headings */
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    color: #6b4226; /* Darker brown for headings */
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0; /* Reset margin to avoid any unwanted spacing */
+}
+
+h1 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid #6b4226;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin: 20px 0; /* Adjust margins to add space around the heading */
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+}
+
+/* Map and Audio Player */
+#map {
+    margin: 20px auto;
+    border: 5px solid #d7ccc8; /* Subtle border */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+audio {
+    margin: 20px auto;
+    display: block;
+    background: #ffffff;
+    border: 2px solid #d7ccc8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Images */
+img {
+    display: block;
+    margin: 20px auto;
+    max-width: 80%;
+    border: 5px solid #d7ccc8;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons in Map Popups */
+button {
+    background: #6b4226; /* Deep brown */
+    color: #fdf3e7; /* Cream text */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    margin-top: 5px;
+}
+
+button:hover {
+    background: #8d6e63; /* Slightly lighter brown on hover */
+}
+
+/* Happy Memory Section */
+h2 + p {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.2rem;
+    background: #fff8e1; /* Soft pastel yellow background */
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #d7ccc8;
+}
+
+/* Footer Links */
+a {
+    color: #6b4226;
+    text-decoration: none;
+    font-style: italic;
+}
+
+a:hover {
+    text-decoration: underline;
+}

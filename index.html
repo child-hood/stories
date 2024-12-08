@@ -1,37 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- document basics -->
-	<meta charset="UTF-8" />
-	<!-- Set viewport so page remains consistently scaled w narrow devices -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" type="text/css" href="css/site.css">
-	<link rel="stylesheet" type="text/css" href="css/homepage.css">
-	<script src="js/site.js.js"></script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script src="js/site.js" DEFER></script>
-	<!-- Link to javascript file - DEFER waits until all elements are rendered -->
-	<script src="https://kit.fontawesome.com/79a30abccf.js" crossorigin="anonymous"></script>
+    <!-- document basics -->
+    <meta charset="UTF-8" />
+    <!-- Set viewport so page remains consistently scaled w narrow devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/site.css">
+    <link rel="stylesheet" type="text/css" href="css/homepage.css">
+    <script src="js/site.js.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/site.js" DEFER></script>
+    <!-- Link to javascript file - DEFER waits until all elements are rendered -->
+    <script src="https://kit.fontawesome.com/79a30abccf.js" crossorigin="anonymous"></script>
 
     <title>Childhood Scrapbook Generator</title>
-	<link rel="icon" href="https://64.media.tumblr.com/a3f905c49a6e498da15402995a0b384d/43ba46ccee95034a-5f/s1280x1920/b301dfcdfbfcf0d7b932c830c0d305ff4d6db2ed.pnj">
+    <link rel="icon" href="https://64.media.tumblr.com/a3f905c49a6e498da15402995a0b384d/43ba46ccee95034a-5f/s1280x1920/b301dfcdfbfcf0d7b932c830c0d305ff4d6db2ed.pnj">
 </head>
 <body>
-<h1>Childhood Stories</h1> 
-	 <p> What's your name?</p>
-	 <input  type="text" id="name" placeholder="type your name...">
+    <h1>Childhood Stories</h1>
+    <p>What's your name?</p>
+    <input type="text" id="name" placeholder="Type your name...">
 
-<p>add some visual memory</p>
-<!--courtesy code of w3schools-->
-<form action="/action_page.php">
-  <input type="file" id="images" name="filename">
-</form>
+    <p>Add some visual memory</p>
+    <!-- Photo upload form -->
+    <form id="photoForm">
+        <input type="file" id="images" name="filename" accept="image/*">
+    </form>
 
-	<p> share a favorite story<p>
-	 <input  type="text" id="story" placeholder=" happy memory here...">
+    <p>Share a favorite story</p>
+    <input type="text" id="story" placeholder="Happy memory here...">
 
-	<div class="button">
-	 <button id="submit-button">submit</button>
-</div>
+    <div class="button">
+        <button id="submit-button">Submit</button>
+    </div>
+
+    <script>
+        // When the submit button is clicked, save the photo and other details to localStorage
+        document.getElementById('submit-button').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const story = document.getElementById('story').value;
+            const photoInput = document.getElementById('images');
+            const file = photoInput.files[0];
+
+            // Check if a photo was selected
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Save photo (base64 string) to localStorage
+                    localStorage.setItem('userPhoto', e.target.result);
+                    // Save name and story to localStorage
+                    localStorage.setItem('userName', name);
+                    localStorage.setItem('userStory', story);
+
+                    alert('Your story has been submitted!');
+                    // Redirect to results page
+                    window.location.href = 'results/resultspage.html';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a photo!');
+            }
+        });
+    </script>
 </body>
 </html>

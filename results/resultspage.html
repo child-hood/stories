@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title> my story!</title>
-    <h1> my childhood story</h1>
-    <h2>my childhood radio station: </h2>
+    <title>My Story!</title>
+    <h1>My Childhood Story</h1>
+    <h2>My Childhood Radio Station:</h2>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="../css/resultspage.css">
 </head>
 <body>
+    <!-- Map Section -->
     <div id="map" style="width: 50%; height: 300px;"></div>
     <audio id="player" controls style="width: 100%;"></audio>
 
@@ -35,10 +37,51 @@
             player.play();
         }
     </script>
-    <h2> my childhood photo: </h2>
-    <img href="" />
 
-    <h2> my happy memory: </h2>
-    
+    <!-- User Submitted Content -->
+    <h2>My Childhood Photo:</h2>
+    <div id="photoContainer">
+        <!-- The photo will be added here dynamically -->
+    </div>
+
+    <h2>My Happy Memory:</h2>
+    <div id="storyContainer">
+        <!-- The user's story will be displayed here -->
+    </div>
+    <div class="button">
+        <button id="next-button" onclick="window.location.href='submissions.html'">Next</button>
+    </div>
+    <script>
+        // Retrieve the saved data from localStorage
+        const userName = localStorage.getItem('userName');
+        const userStory = localStorage.getItem('userStory');
+        const userPhoto = localStorage.getItem('userPhoto');
+
+        // Display the name, story, and photo if data exists
+        if (userName && userStory && userPhoto) {
+            // Display name and story
+            const storyContainer = document.getElementById('storyContainer');
+            storyContainer.innerHTML = `<p><strong>Story:</strong> ${userStory}</p>`;
+
+            // Display name (Optional, you can choose where to display it)
+            const nameContainer = document.createElement('h3');
+            nameContainer.innerText = `Submitted by: ${userName}`;
+            document.body.insertBefore(nameContainer, storyContainer);
+
+            // Display photo
+            const photoContainer = document.getElementById('photoContainer');
+            const img = document.createElement('img');
+            img.src = userPhoto;
+            img.alt = 'User Submitted Photo';
+            img.style.maxWidth = '80%';
+            img.style.border = '5px solid #d7ccc8';
+            img.style.borderRadius = '15px';
+            photoContainer.appendChild(img);
+        } else {
+            // If no data found in localStorage
+            document.getElementById('photoContainer').innerHTML = '<p>No photo submitted.</p>';
+            document.getElementById('storyContainer').innerHTML = '<p>No story submitted.</p>';
+        }
+    </script>
 </body>
-</html> 
+</html>
