@@ -1,49 +1,43 @@
-document.getElementById('submit-button').addEventListener('click', function() {
-  const userName = document.getElementById('name').value;
-  const userStory = document.getElementById('story').value;
-  const userPhoto = document.getElementById('images').files[0];
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve the stored submissions from localStorage (if any)
+    const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
 
-  // Ensure a name, story, and photo are submitted
-  if (userName && userStory && userPhoto) {
-      // Check if the uploaded file is an image
-      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-      if (!validImageTypes.includes(userPhoto.type)) {
-          alert('Please upload a valid image file (JPEG, PNG, GIF).');
-          return; // Stop execution if the file type is invalid
-      }
+    // Function to display all submissions
+    function displaySubmissions() {
+        const container = document.getElementById('submissions-container');
+        
+        // Clear previous submissions
+        container.innerHTML = '';
+        
+        // If there are no submissions, display a message
+        if (submissions.length === 0) {
+            container.innerHTML = '<p>No submissions yet!</p>';
+            return;
+        }
 
-      // Convert photo to base64 (or store its file path if you prefer)
-      const reader = new FileReader();
-      reader.onloadend = function() {
-          const photoData = reader.result;
+        // Loop through submissions and create elements for each
+        submissions.forEach(submission => {
+            const submissionDiv = document.createElement('div');
+            submissionDiv.classList.add('submission');
+            
+            const name = document.createElement('h3');
+            name.innerText = `Submitted by: ${submission.name}`;
+            submissionDiv.appendChild(name);
 
-          // Create a submission object
-          const submission = {
-              name: userName,
-              story: userStory,
-              photo: photoData // Store base64-encoded image
-          };
+            const story = document.createElement('p');
+            story.innerText = `Story: ${submission.story}`;
+            submissionDiv.appendChild(story);
 
-          // Retrieve existing submissions from localStorage, or create an empty array
-          const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+            const photo = document.createElement('img');
+            photo.src = submission.photo;
+            photo.alt = 'User Submitted Photo';
+            photo.style.maxWidth = '80%';
+            submissionDiv.appendChild(photo);
 
-          // Add the new submission to the array
-          submissions.push(submission);
+            container.appendChild(submissionDiv);
+        });
+    }
 
-          // Save the updated submissions array to localStorage
-          localStorage.setItem('submissions', JSON.stringify(submissions));
-
-          // Clear the input fields after submission
-          document.getElementById('name').value = '';
-          document.getElementById('story').value = '';
-          document.getElementById('images').value = '';
-
-          // Optionally, redirect the user to the submissions page
-          window.location.href = 'submissions.html'; // This takes them to the submissions page
-      };
-
-      reader.readAsDataURL(userPhoto); // Convert the uploaded photo to base64
-  } else {
-      alert('Please fill in all fields and upload a photo!');
-  }
+    // Display all submissions when the page loads
+    displaySubmissions();
 });

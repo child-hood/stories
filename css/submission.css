@@ -1,21 +1,125 @@
-.submission {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
+/* Set the paper background */
+body {
+    background-image: url('../img/paper.jpeg'); /* Your paper image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: 'Georgia', serif; /* Classic serif font for a vintage look */
+    color: #3e3e3e; /* Dark grey text for a softer contrast */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Container for the submissions */
+#submissions-container {
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light transparent white background for readability */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Styling individual submission */
+.submission {
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #f9f7f1; /* Soft off-white for a vintage vibe */
+    border-radius: 8px;
+    border: 1px solid #e0d9d0; /* Subtle border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Georgia', serif;
+}
+
+.submission h3 {
+    font-size: 1.4em;
+    color: #4b3f3b;
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Adds vintage feel to the name */
+    letter-spacing: 1px; /* Slight letter-spacing for effect */
+}
+
+.submission p {
+    font-size: 1em;
+    color: #5b5a5a;
+    line-height: 1.6;
+    text-align: justify; /* Justify text for a more formal, classic look */
+}
+
+/* Style the photos */
 .submission img {
     max-width: 100%;
     height: auto;
+    border-radius: 5px;
+    border: 2px solid #e0d9d0; /* Vintage border around images */
+    margin-top: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Soft shadow to give depth */
 }
 
-h3 {
-    color: #333;
-    font-size: 1.2em;
+/* Styling for headings */
+h1, h2 {
+    text-align: center;
+    font-family: 'Georgia', serif;
+    color: #3e3e3e;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
-p {
+/* Buttons */
+button {
+    background-color: #4a3f37;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
     font-size: 1em;
-    color: #555;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #6c4f3d;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Link styling for vintage feel */
+a {
+    color: #6c4f3d;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Ensure responsive design */
+@media (max-width: 768px) {
+    #submissions-container {
+        padding: 10px;
+        margin: 20px;
+    }
+
+    .submission {
+        padding: 10px;
+    }
+
+    h1, h2 {
+        font-size: 2em;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
 }
