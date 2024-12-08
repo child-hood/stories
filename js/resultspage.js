@@ -1,52 +1,44 @@
-document.getElementById('submit-button').addEventListener('click', function(event) {
-  event.preventDefault(); // Prevent the form from submitting traditionally
+document.addEventListener('DOMContentLoaded', function() {
+  // Retrieve stored submissions from localStorage
+  const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
 
-  const userName = document.getElementById('name').value;
-  const userStory = document.getElementById('story').value;
-  const userPhoto = document.getElementById('images').files[0];
+  // Function to display the latest submission or show a message if none
+  function displayResults() {
+      const container = document.getElementById('results-container');
+      
+      // Clear the container first
+      container.innerHTML = '';
 
-  // Ensure all fields are filled
-  if (userName && userStory && userPhoto) {
-      // Validate image type
-      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-      if (!validImageTypes.includes(userPhoto.type)) {
-          alert('Please upload a valid image file (JPEG, PNG, GIF).');
-          return; // Stop execution if the file type is invalid
+      if (submissions.length === 0) {
+          container.innerHTML = '<p>No submissions yet!</p>';
+          return;
       }
 
-      // Convert the image to base64 using FileReader
-      const reader = new FileReader();
-      reader.onloadend = function() {
-          const photoData = reader.result;
+      // For now, we will only show the latest submission
+      const submission = submissions[submissions.length - 1]; // Get the most recent submission
 
-          // Create a submission object
-          const submission = {
-              name: userName,
-              story: userStory,
-              photo: photoData // Store base64-encoded image
-          };
+      // Create elements for displaying the submission
+      const submissionDiv = document.createElement('div');
+      submissionDiv.classList.add('submission');
 
-          // Retrieve existing submissions or create an empty array
-          let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+      const name = document.createElement('h3');
+      name.innerText = `Submitted by: ${submission.name}`;
+      submissionDiv.appendChild(name);
 
-          // Add the new submission to the array
-          submissions.push(submission);
+      const story = document.createElement('p');
+      story.innerText = `Story: ${submission.story}`;
+      submissionDiv.appendChild(story);
 
-          // Save the updated submissions array to localStorage
-          localStorage.setItem('submissions', JSON.stringify(submissions));
+      const photo = document.createElement('img');
+      photo.src = submission.photo;
+      photo.alt = 'User Submitted Photo';
+      photo.style.maxWidth = '80%';
+      submissionDiv.appendChild(photo);
 
-          // Clear the form fields after submission
-          document.getElementById('name').value = '';
-          document.getElementById('story').value = '';
-          document.getElementById('images').value = '';
-
-          // Optionally, redirect the user to the submissions page
-          window.location.href = 'submissions.html'; // Redirect to display all submissions
-      };
-
-      // Read the uploaded photo as a data URL
-      reader.readAsDataURL(userPhoto);
-  } else {
-      alert('Please fill in all fields and upload a photo!');
+      // Append the submissionDiv to the container
+      container.appendChild(submissionDiv);
   }
+
+  // Call the displayResults function to show the results when the page is loaded
+  displayResults();
 });
