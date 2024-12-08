@@ -90,15 +90,4 @@ document.getElementById('submit-button')?.addEventListener('click', function(eve
     } else {
         alert('Please fill in all fields and upload a photo!');
     }
-    const CopyToClipboard = toCopy => {
-        const el = document.createElement(`textarea`)
-        el.value = toCopy
-        el.setAttribute(`readonly`, ``)
-        el.style.position = `absolute`
-        el.style.left = `-9999px`
-        document.body.appendChild(el)
-        el.select()
-        document.execCommand(`copy`)
-        document.body.removeChild(el)
-      }
 });
