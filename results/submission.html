@@ -46,6 +46,15 @@
         } else {
             submissionsContainer.innerHTML = '<p>No submissions yet.</p>';
         }
+        <Button
+     variant="contained"
+     size="large"
+     onClick={() => {
+       CopyToClipboard(window.location.href)
+     }}
+   >
+     Copy Link to Clipboard
+   </Button>
     </script>
 </body>
 </html>
